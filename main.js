@@ -1,18 +1,3 @@
-// you need to build 4 objects here.
-// person, skills, education, onlineClasses
-
-// person includes name, email, picture, github
-// skills is an array of skills
-// education includes school, degree, major, location, date
-// online classes will include provider, and an array of courses with title and
-// date
-
-// all content must use the jquery append feature.
-
-// html page should be styled with css.
-
-// each object will have it's own display function as the last property
-
 var person = {
   name: 'Greg Oliphant',
   email: 'goliphant@esi-estech.com',
@@ -28,34 +13,52 @@ var person = {
 };
 
 var skills = {
-  skills: [
+  skillsList: [
     'Node.js',
     'JavaScript',
+    "Linux",
     'MongoDB',
     'Git'
   ],
   display: function() {
     $('#skills').append('<h1>Skills:</h1>');
-    for (var i = 0; i < skills.skills.length; ++i) {
-      $('#skills').append('<li>' + skills.skills[i] + '</li>');
+    for (var i = 0; i < skills.skillsList.length; ++i) {
+      $('#skills').append('<li>' + skills.skillsList[i] + '</li>');
     }
   }
 };
 
 
 var education = {
-  school: 'DePaul University',
-  degree: 'Masters',
-  major: 'Computer Science',
-  location: 'Chicago, IL',
-  date: 'June, 1994',
+  'DePaul University': [
+    {
+      degree: 'Masters of Science',
+      major: 'Computer Science',
+      location: 'Chicago, IL',
+      date: 'June, 1994'
+    }
+  ],
+  'DeVry Institute of Technology': [
+    {
+      degree: 'Bachelors of Science',
+      major: 'Computer Information Systems',
+      location: 'Irving, TX',
+      date: 'February, 1989'
+    }
+  ],
   display: function() {
     $('#education').append('<h1>Education:</h1>');
-    $('#education').append('School: ' + education.school + '<br>');
-    $('#education').append('Degree: ' + education.degree + '<br>');
-    $('#education').append('Major: ' + education.major + '<br>');
-    $('#education').append('Location: ' + education.location + '<br>');
-    $('#education').append('Date: ' + education.date + '<br>');
+    for (var key in education) {
+      if (typeof education[key] !== 'function') {
+        $('#education').append('<h2>' + key + '</h2>');
+        for (var i = 0; i < education[key].length; ++i) {
+          $('#education').append('<li>Degree: ' + education[key][i].degree + '</li>');
+          $('#education').append('<li>Major: ' + education[key][i].major + '</li>');
+          $('#education').append('<li>Location: ' + education[key][i].location + '</li>');
+          $('#education').append('<li>Date: ' + education[key][i].date + '</li>');
+        }
+      }
+    }
   }
 };
 
@@ -100,4 +103,4 @@ var onlineClasses = {
 person.display();
 skills.display();
 education.display();
-onlineClasses.display();
+onlineClasses.display() 
